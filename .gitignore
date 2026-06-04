@@ -1,0 +1,18 @@
+.env
+
+# Visual Studio
+/.vs/
+
+# .NET
+bin/
+obj/
+
+# Secrets
+**/appsettings.Production.json
+**/secrets.json
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates

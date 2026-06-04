@@ -1,0 +1,55 @@
+services:
+
+  db-rm555125:
+    image: postgres:16-alpine
+    container_name: satellite-db-rm555125      
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB:       ${DB_NAME}
+      POSTGRES_USER:     ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5432:5432"                            
+    volumes:
+      - satellite-pgdata:/var/lib/postgresql/data
+    networks:
+      - satellite-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+
+  app-rm555125:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: satellite-app-rm555125
+    restart: unless-stopped
+    environment:
+      DB_HOST:     db-rm555125
+      DB_PORT:     5432
+      DB_NAME:     ${DB_NAME}
+      DB_USER:     ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      JWT_KEY:     ${JWT_KEY}
+      JWT_ISSUER:  ${JWT_ISSUER}
+      ASPNETCORE_URLS: http://+:8080
+    ports:
+      - "8080:8080"
+    depends_on:
+      db-rm555125:
+        condition: service_healthy
+    networks:
+      - satellite-network
+
+
+volumes:
+  satellite-pgdata:
+    name: satellite-pgdata
+
+networks:
+  satellite-network:
+    name: satellite-network
+    driver: bridge

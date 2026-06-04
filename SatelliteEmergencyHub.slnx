@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="API/SatelliteEmergencyHub.API.csproj" />
+  <Project Path="Application/SatelliteEmergencyHub.Application.csproj" />
+  <Project Path="SatelliteEmergencyHub.Domain/SatelliteEmergencyHub.Domain.csproj" />
+  <Project Path="SatelliteEmergencyHub.Infrastructure/SatelliteEmergencyHub.Infrastructure.csproj" />
+</Solution>
