@@ -98,8 +98,8 @@ O **CRUD completo** está implementado em todas as entidades, com dados persisti
 | 👤 Usuário / Cliente | Acessa a API via Swagger ou Postman pela porta `8080` |
 | ☁️ Cloud / VM | Ambiente de execução dos containers |
 | 🐳 Docker Network `satellite-network` | Rede bridge isolada que conecta app e banco |
-| 📦 Container `satellite-app-rmXXXXX` | API REST em .NET 10, porta `8080`, usuário `satelliteuser` |
-| 🗄️ Container `satellite-db-rmXXXXX` | PostgreSQL 16, porta `5432` |
+| 📦 Container `satellite-app-rm555125` | API REST em .NET 10, porta `8080`, usuário `satelliteuser` |
+| 🗄️ Container `satellite-db-rm555125` | PostgreSQL 16, porta `5432` |
 | 💾 Volume `satellite-pgdata` | Persistência dos dados do banco entre reinicializações |
 
 ---
@@ -190,7 +190,7 @@ O banco de dados possui **6 tabelas** com os seguintes relacionamentos:
 
 ## 🐳 Estrutura dos Containers
 
-### Container da Aplicação — `satellite-app-rmXXXXX`
+### Container da Aplicação — `satellite-app-rm555125`
 
 | Configuração | Valor |
 |---|---|
@@ -203,7 +203,7 @@ O banco de dados possui **6 tabelas** com os seguintes relacionamentos:
 | Variáveis de ambiente | `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `JWT_KEY`, `JWT_ISSUER`, `ASPNETCORE_URLS` |
 | Rede | `satellite-network` |
 
-### Container do Banco de Dados — `satellite-db-rmXXXXX`
+### Container do Banco de Dados — `satellite-db-rm555125`
 
 | Configuração | Valor |
 |---|---|
@@ -280,7 +280,7 @@ cp .env.example .env
 Abra o `.env` e preencha com seus valores:
 
 ```env
-DB_HOST=satellite-db-rmXXXXX
+DB_HOST=satellite-db-rm555125
 DB_PORT=5432
 DB_NAME=satellite_emergency_hub
 DB_USER=postgres
@@ -312,8 +312,8 @@ Saída esperada:
 
 ```
 CONTAINER ID   IMAGE                        STATUS          PORTS                    NAMES
-xxxxxxxxxxxx   satelliteemergencyhub-app    Up 30 seconds   0.0.0.0:8080->8080/tcp   satellite-app-rmXXXXX
-xxxxxxxxxxxx   postgres:16-alpine           Up 35 seconds   0.0.0.0:5432->5432/tcp   satellite-db-rmXXXXX
+xxxxxxxxxxxx   satelliteemergencyhub-app    Up 30 seconds   0.0.0.0:8080->8080/tcp   satellite-app-rm555125
+xxxxxxxxxxxx   postgres:16-alpine           Up 35 seconds   0.0.0.0:5432->5432/tcp   satellite-db-rm555125
 ```
 
 ---
@@ -323,13 +323,13 @@ xxxxxxxxxxxx   postgres:16-alpine           Up 35 seconds   0.0.0.0:5432->5432/t
 **Logs da aplicação .NET:**
 
 ```bash
-docker logs satellite-app-rmXXXXX
+docker logs satellite-app-rm555125
 ```
 
 **Logs do banco de dados PostgreSQL:**
 
 ```bash
-docker logs satellite-db-rmXXXXX
+docker logs satellite-db-rm555125
 ```
 
 ---
@@ -480,7 +480,7 @@ Execute os SELECTs **conectando diretamente no container do banco**, conforme ex
 ### Acesse o container do banco
 
 ```bash
-docker container exec -it satellite-db-rmXXXXX psql -U postgres -d satellite_emergency_hub
+docker container exec -it satellite-db-rm555125 psql -U postgres -d satellite_emergency_hub
 ```
 
 ### Queries de evidência — execute uma a uma
@@ -533,7 +533,7 @@ JOIN "Occurrences"     o ON eto."OccurrenceId"    =  o."Id";
 ### Container da Aplicação
 
 ```bash
-docker container exec -it satellite-app-rmXXXXX sh
+docker container exec -it satellite-app-rm555125 sh
 ```
 
 Dentro do container:
@@ -548,7 +548,7 @@ exit
 ### Container do Banco de Dados
 
 ```bash
-docker container exec -it satellite-db-rmXXXXX sh
+docker container exec -it satellite-db-rm555125 sh
 ```
 
 Dentro do container:
