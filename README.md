@@ -80,16 +80,11 @@ O **CRUD completo** está implementado em todas as entidades, com dados persisti
        - Legendas e rótulos em todos os componentes
 ============================================================ -->
 
-**📌 COLOQUE AQUI A IMAGEM DO DIAGRAMA:**
+![Arquitetura Macro](docs/satellite-architecture.drawio.png)
 
-```
-[ Exportar o diagrama do Draw.io como PNG e salvar em /docs/architecture.png ]
-[ Depois substituir este bloco por: ![Arquitetura Macro](docs/architecture.png) ]
-```
 
 > 🔗 Ferramentas utilizadas:
 > - [Draw.io](https://app.diagrams.net)
-> - [Azure Diagram Tool — Visual Paradigm](https://online.visual-paradigm.com/diagrams/features/azure-architecture-diagram-tool/)
 
 ### Componentes representados no diagrama
 
